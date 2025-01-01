@@ -70,7 +70,7 @@ A modern and feature-rich calendar application that enables efficient event mana
 5. Open your browser and navigate to `http://localhost:3000` to view the app.
 
 ## Deployed Application
-Access the live version of the app here: [Deployed Link](https://dynamic-event-calendar-beta.vercel.app/) (Replace with actual link)
+Access the live version of the app here: [Deployed Link](https://dynamic-event-calendar-beta.vercel.app/) 
 
 ## Challenges and Learning
 This project was an opportunity to apply advanced React concepts, implement intricate event scheduling logic, and design an intuitive UI. Key challenges included:
