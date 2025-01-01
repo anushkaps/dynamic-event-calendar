@@ -5,7 +5,7 @@ import DroppableDay from './DroppableDay';
 
 function CalendarGrid({ currentDate, selectedDate, onDateClick, onEditEvent }) {
   const { events, deleteEvent } = useEvents();
-  
+
   const getDaysInMonth = (date) => {
     const year = date.getFullYear();
     const month = date.getMonth();
@@ -29,13 +29,13 @@ function CalendarGrid({ currentDate, selectedDate, onDateClick, onEditEvent }) {
     
     for (let i = prevMonthDays - 1; i >= 0; i--) {
       const date = new Date(prevMonth.getFullYear(), prevMonth.getMonth(), prevMonthLastDay - i);
-      days.push(renderDay(date, true));
+      days.push(renderDay(date, true, today)); // Pass today if redefining outside
     }
 
     // Current month's days
     for (let i = 1; i <= daysInMonth; i++) {
       const date = new Date(currentDate.getFullYear(), currentDate.getMonth(), i);
-      days.push(renderDay(date, false));
+      days.push(renderDay(date, false, today)); // Pass today if redefining outside
     }
 
     // Next month's days
@@ -44,16 +44,16 @@ function CalendarGrid({ currentDate, selectedDate, onDateClick, onEditEvent }) {
     
     for (let i = 1; i <= remainingDays; i++) {
       const date = new Date(nextMonth.getFullYear(), nextMonth.getMonth(), i);
-      days.push(renderDay(date, true));
+      days.push(renderDay(date, true, today)); // Pass today if redefining outside
     }
 
     return days;
   };
 
-  const renderDay = (date, isOutsideMonth) => {
+  const renderDay = (date, isOutsideMonth, today) => { // Receive today as a parameter
     const dateStr = date.toDateString();
     const dayEvents = events[dateStr] || [];
-    const isToday = new Date().toDateString() === dateStr;
+    const isToday = today.toDateString() === dateStr;
     const isSelected = selectedDate?.toDateString() === dateStr;
 
     return (
@@ -61,9 +61,10 @@ function CalendarGrid({ currentDate, selectedDate, onDateClick, onEditEvent }) {
         key={dateStr}
         className={`
           min-h-[80px] p-1 border relative
-          ${isOutsideMonth ? 'bg-gray-50' : 'bg-white'}
-          ${isToday ? 'bg-blue-200 border-blue-200' : 'border-gray-200'}
-          ${isSelected ? 'ring-2 ring-blue-500' : ''}
+          ${isToday ? 'bg-blue-200 border-blue-200' : 
+            isOutsideMonth ? 'bg-gray-50' : 'bg-white'
+          }
+          ${isSelected ? 'ring-2 ring-blue-500' : ''}
         `}
         onClick={() => onDateClick(date)}
       >
