@@ -62,7 +62,7 @@ function CalendarGrid({ currentDate, selectedDate, onDateClick, onEditEvent }) {
         className={`
           min-h-[80px] p-1 border relative
           ${isOutsideMonth ? 'bg-gray-50' : 'bg-white'}
-          ${isToday ? 'bg-blue-200 border-blue-100' : 'border-gray-200'}
+          ${isToday ? 'bg-blue-200 border-blue-200' : 'border-gray-200'}
           ${isSelected ? 'ring-2 ring-blue-500' : ''}
         `}
         onClick={() => onDateClick(date)}

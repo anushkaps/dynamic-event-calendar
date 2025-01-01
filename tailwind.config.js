@@ -42,6 +42,9 @@ module.exports = {
             DEFAULT: "hsl(var(--accent))",
             foreground: "hsl(var(--accent-foreground))",
           },
+          blue: {
+            200: '#bfdbfe', // Light blue color
+          },
         },
         borderRadius: {
           lg: "var(--radius)",
