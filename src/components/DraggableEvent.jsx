@@ -15,7 +15,7 @@ function DraggableEvent({ event, onDelete, onEdit }) {
     <div
       ref={drag}
       className={`
-        p-2 rounded-md mb-2 cursor-move group relative
+        p-1 rounded text-xs mb-1 cursor-move group relative
         ${isDragging ? 'opacity-50' : 'opacity-100'}
         ${event.color === 'blue' ? 'bg-blue-100' :
           event.color === 'green' ? 'bg-green-100' :
@@ -25,8 +25,8 @@ function DraggableEvent({ event, onDelete, onEdit }) {
       `}
     >
       <div className="flex justify-between items-start">
-        <h4 className="font-medium">{event.title}</h4>
-        <div className="opacity-0 group-hover:opacity-100 transition-opacity flex gap-1">
+        <div className="truncate">{event.title}</div>
+        <div className="opacity-0 group-hover:opacity-100 transition-opacity flex gap-0.5">
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -34,7 +34,7 @@ function DraggableEvent({ event, onDelete, onEdit }) {
             }}
             className="text-gray-500 hover:text-gray-700"
           >
-            <Edit className="h-4 w-4" />
+            <Edit className="h-3 w-3" />
           </button>
           <button
             onClick={(e) => {
@@ -43,14 +43,11 @@ function DraggableEvent({ event, onDelete, onEdit }) {
             }}
             className="text-red-500 hover:text-red-700"
           >
-            <Trash2 className="h-4 w-4" />
+            <Trash2 className="h-3 w-3" />
           </button>
         </div>
       </div>
-      <p className="text-sm text-gray-600">{event.startTime} - {event.endTime}</p>
-      {event.description && (
-        <p className="text-sm text-gray-600 mt-1">{event.description}</p>
-      )}
+      <div className="text-[10px] text-gray-600">{event.startTime}</div>
     </div>
   );
 }

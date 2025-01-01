@@ -7,6 +7,7 @@ import EventModal from './EventModal';
 import EventList from './EventList';
 import SearchBar from './SearchBar';
 import ExportButton from './ExportButton';
+import { Toaster } from './ui/toaster';
 
 function Calendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -21,16 +22,25 @@ function Calendar() {
   };
 
   const handleEditEvent = (event) => {
+    setSelectedDate(new Date(event.date)); // Ensure the correct date is selected when editing
     setEditingEvent(event);
     setIsModalOpen(true);
   };
 
   const handlePrevMonth = () => {
-    setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() - 1)));
+    setCurrentDate(prev => {
+      const newDate = new Date(prev);
+      newDate.setMonth(newDate.getMonth() - 1);
+      return newDate;
+    });
   };
 
   const handleNextMonth = () => {
-    setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() + 1)));
+    setCurrentDate(prev => {
+      const newDate = new Date(prev);
+      newDate.setMonth(newDate.getMonth() + 1);
+      return newDate;
+    });
   };
 
   const handleCloseModal = () => {
@@ -56,6 +66,7 @@ function Calendar() {
               currentDate={currentDate}
               selectedDate={selectedDate}
               onDateClick={handleDateClick}
+              onEditEvent={handleEditEvent} // Added prop for event editing
             />
           </div>
           <EventList 
@@ -69,6 +80,7 @@ function Calendar() {
           selectedDate={selectedDate}
           editEvent={editingEvent}
         />
+        <Toaster /> {/* Added Toaster for notifications */}
       </div>
     </DndProvider>
   );
