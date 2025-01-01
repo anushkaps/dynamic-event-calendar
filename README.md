@@ -53,7 +53,7 @@ A modern and feature-rich calendar application that enables efficient event mana
 ### Steps to Run Locally
 1. Clone the repository:
    ```bash
-   git clone [<repository-url>](https://github.com/anushkaps/dynamic-event-calendar.git)
+   git clone [https://github.com/anushkaps/dynamic-event-calendar.git]
    ```
 2. Navigate to the project directory:
    ```bash
