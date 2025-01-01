@@ -8,6 +8,7 @@ import EventList from './EventList';
 import SearchBar from './SearchBar';
 import ExportButton from './ExportButton';
 import { Toaster } from './ui/toaster';
+import EventSidebar from './EventSidebar';
 
 function Calendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -73,6 +74,10 @@ function Calendar() {
             selectedDate={selectedDate}
             onEditEvent={handleEditEvent}
           />
+          {/* <EventSidebar 
+          selectedDate={selectedDate}
+          onEditEvent={handleEditEvent}
+          /> */}
         </div>
         <EventModal 
           isOpen={isModalOpen}
